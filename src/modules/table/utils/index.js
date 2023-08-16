@@ -27,9 +27,17 @@ function recursiveSort(item, key) {
 }
 
 export function sortDataByKey(data, key) {
-  const copyOfData = data.slice()
+  const copyOfData = [...data]
   copyOfData.forEach(item => recursiveSort(item, key))
   copyOfData.sort((a, b) => a[key].localeCompare(b[key]))
 
   return copyOfData
+}
+
+export function setKeyToLocalStorage(key, array) {
+  localStorage.setItem(key, JSON.stringify(array))
+}
+
+export function getKeyFromLocalStorage(key) {
+  return JSON.parse(localStorage.getItem(key))
 }

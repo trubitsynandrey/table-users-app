@@ -4,7 +4,7 @@
 
     <div class="table">
       <header-row :tableItem="{ name: 'name', phone: 'phone' }" @sort="sortUsersByKey" />
-      <Row v-for="item in tableItems" :key="item.id" :tableItem="item" />
+      <Row v-for="user in userItems" :key="user.id" :tableItem="user" />
     </div>
 
     <app-modal ref="modalRef">
@@ -12,16 +12,16 @@
         <div class="modal_content">
           <p>Fill the form to add user</p>
           <app-input
-            :value="name"
             @input="updateNameValue"
-            name="Name"
+            :value="name"
             :errorMsg="errorName ? 'Enter the name' : ''"
+            name="Name"
           />
           <app-input
-            :value="phone"
             @input="updatePhoneValue"
-            name="Phone"
+            :value="phone"
             :errorMsg="errorPhone ? 'Enter the phone' : ''"
+            name="Phone"
             type="number"
           />
           <app-select :options="options" @input="handleSelectInput" :value="option" />
@@ -33,14 +33,16 @@
 </template>
 
 <script>
-// import Button from '../components/button/button.vue'
-// import Input from '../components/input/input.vue'
-// import Modal from '../components/modal/modal.vue'
-// import Select from '../components/select/select.vue'
+import { OPTIONS, USERS } from './table/constants'
 import Cell from './table/ui/cell.vue'
 import HeaderRow from './table/ui/header-row.vue'
 import Row from './table/ui/row.vue'
-import { mapUserToMaster, sortDataByKey } from './table/utils/index.js'
+import {
+  getKeyFromLocalStorage,
+  mapUserToMaster,
+  setKeyToLocalStorage,
+  sortDataByKey
+} from './table/utils/index'
 
 export default {
   name: 'table-component',
@@ -75,7 +77,7 @@ export default {
         return
       }
 
-      const tableItem = {
+      const userItem = {
         id: new Date().getTime().toString(),
         name: this.name,
         phone: this.phone,
@@ -83,15 +85,15 @@ export default {
       }
 
       if (this.option) {
-        this.tableItems = mapUserToMaster(this.tableItems, this.option.id, tableItem)
+        this.userItems = mapUserToMaster(this.userItems, this.option.id, userItem)
       } else {
-        this.tableItems = [...this.tableItems, tableItem]
+        this.userItems = [...this.userItems, userItem]
       }
 
-      this.options = [...this.options, tableItem]
+      this.options = [...this.options, userItem]
 
-      localStorage.setItem('users', JSON.stringify(this.tableItems))
-      localStorage.setItem('options', JSON.stringify(this.options))
+      setKeyToLocalStorage(USERS, this.userItems)
+      setKeyToLocalStorage(OPTIONS, this.options)
 
       this.name = ''
       this.phone = ''
@@ -99,10 +101,10 @@ export default {
       this.option = undefined
     },
     sortUsersByKey(key) {
-      if (this.tableItems.length === 0) return
+      if (this.userItems.length === 0) return
 
-      this.tableItems = sortDataByKey(this.tableItems, key)
-      localStorage.setItem('users', JSON.stringify(this.tableItems))
+      this.userItems = sortDataByKey(this.userItems, key)
+      setKeyToLocalStorage(USERS, this.userItems)
     }
   },
   data() {
@@ -110,19 +112,19 @@ export default {
       name: '',
       phone: '',
       option: undefined,
-      tableItems: [],
+      userItems: [],
       options: [],
       errorName: false,
       errorPhone: false
     }
   },
   mounted() {
-    const savedUsers = localStorage.getItem('users')
-    const options = localStorage.getItem('options')
+    const savedUsers = getKeyFromLocalStorage(USERS)
+    const options = getKeyFromLocalStorage(OPTIONS)
 
     if (savedUsers && options) {
-      this.tableItems = JSON.parse(savedUsers)
-      this.options = JSON.parse(options)
+      this.userItems = savedUsers
+      this.options = options
     }
   },
   components: { Cell, Row, HeaderRow }
