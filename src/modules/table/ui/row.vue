@@ -1,3 +1,19 @@
+<template>
+  <div>
+    <div class="row" @click="showChildren = !showChildren">
+      <Cell :text="tableItem.name" :withChildren="withChildren" :level="tableItem.level" />
+      <Cell :text="tableItem.phone" />
+    </div>
+
+    <row
+      :class="{ not_show: !showChildren, show: showChildren }"
+      v-for="student of tableItem.students"
+      :key="student.id"
+      :tableItem="student"
+    />
+  </div>
+</template>
+
 <script>
 import Cell from './cell.vue'
 import Row from './row.vue'
@@ -44,19 +60,3 @@ export default {
   display: block;
 }
 </style>
-
-<template>
-  <div>
-    <div class="row" @click="showChildren = !showChildren">
-      <Cell :text="tableItem.name" :withChildren="withChildren" :level="tableItem.level" />
-      <Cell :text="tableItem.phone" />
-    </div>
-
-    <Row
-      :class="{ not_show: !showChildren, show: showChildren }"
-      v-for="student of tableItem.students"
-      :key="student.id"
-      :tableItem="student"
-    />
-  </div>
-</template>

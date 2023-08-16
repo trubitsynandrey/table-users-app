@@ -1,3 +1,37 @@
+<template>
+  <div class="container">
+    <Button @emitClick="openModal" class="button_add">Add</Button>
+
+    <div class="table">
+      <header-row :tableItem="{ name: 'name', phone: 'phone' }" @sort="sortUsersByKey" />
+      <Row v-for="item in tableItems" :key="item.id" :tableItem="item" />
+    </div>
+
+    <modal ref="modalRef">
+      <form @submit.prevent="submitHandle">
+        <div class="modal_content">
+          <p>Fill the form to add user</p>
+          <Input
+            :value="name"
+            @input="updateNameValue"
+            name="Name"
+            :errorMsg="errorName ? 'Enter the name' : ''"
+          />
+          <Input
+            :value="phone"
+            @input="updatePhoneValue"
+            name="Phone"
+            :errorMsg="errorPhone ? 'Enter the phone' : ''"
+            type="number"
+          />
+          <Select :options="options" @input="handleSelectInput" :value="option" />
+          <Button>Submit</Button>
+        </div>
+      </form>
+    </modal>
+  </div>
+</template>
+
 <script>
 import Button from '../components/button/button.vue'
 import Input from '../components/input/input.vue'
@@ -9,7 +43,7 @@ import Row from './table/ui/row.vue'
 import { mapUserToMaster, sortDataByKey } from './table/utils/index.js'
 
 export default {
-  name: 'Table',
+  name: 'table-component',
   methods: {
     openModal() {
       this.$refs.modalRef.openPopup()
@@ -94,40 +128,6 @@ export default {
   components: { Cell, Button, Modal, Input, Select, Row, HeaderRow }
 }
 </script>
-
-<template>
-  <div class="container">
-    <Button @emitClick="openModal" class="button_add">Add</Button>
-
-    <div class="table">
-      <HeaderRow :tableItem="{ name: 'name', phone: 'phone' }" @sort="sortUsersByKey" />
-      <Row v-for="item in tableItems" :key="item.id" :tableItem="item" />
-    </div>
-
-    <Modal ref="modalRef">
-      <form @submit.prevent="submitHandle">
-        <div class="modal_content">
-          <p>Fill the form to add user</p>
-          <Input
-            :value="name"
-            @input="updateNameValue"
-            name="Name"
-            :errorMsg="errorName ? 'Enter the name' : ''"
-          />
-          <Input
-            :value="phone"
-            @input="updatePhoneValue"
-            name="Phone"
-            :errorMsg="errorPhone ? 'Enter the phone' : ''"
-            type="number"
-          />
-          <Select :options="options" @input="handleSelectInput" :value="option" />
-          <Button>Submit</Button>
-        </div>
-      </form>
-    </Modal>
-  </div>
-</template>
 
 <style scoped>
 .container {

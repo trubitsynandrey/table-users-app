@@ -1,3 +1,10 @@
+<template>
+  <div class="row">
+    <cell :text="tableItem.name" @clickCell="handleRowClick(tableItem.name)" />
+    <cell :text="tableItem.phone" @clickCell="handleRowClick(tableItem.phone)" />
+  </div>
+</template>
+
 <script>
 import Cell from './cell.vue'
 import Row from './row.vue'
@@ -32,10 +39,3 @@ export default {
   border-top: 1px solid var(--border-color);
 }
 </style>
-
-<template>
-  <div class="row">
-    <Cell :text="tableItem.name" @clickCell="handleRowClick(tableItem.name)" />
-    <Cell :text="tableItem.phone" @clickCell="handleRowClick(tableItem.phone)" />
-  </div>
-</template>

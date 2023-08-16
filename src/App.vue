@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <Table />
+    <table-component />
   </div>
 </template>
 
 <script>
-import Table from './modules/Table.vue'
+import TableComponent from './modules/table-component.vue'
 
 export default {
   name: 'App',
   components: {
-    Table
+    TableComponent
   }
 }
 </script>
