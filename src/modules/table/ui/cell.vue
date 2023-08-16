@@ -1,6 +1,6 @@
 <template>
   <div class="cell" @click="$emit('clickCell')">
-    <p :style="{left: `${level * 14}px`}" :class="{with_children: withChildren}">{{ text }}</p>
+    <p :style="{ left: `${level * 14}px` }" :class="{ with_children: withChildren }">{{ text }}</p>
   </div>
 </template>
 
@@ -8,11 +8,6 @@
 export default {
   name: 'Cell',
   props: ['text', 'level', 'withChildren'],
-  data () {
-    return {
-
-    }
-  }
 }
 </script>
 
@@ -31,5 +26,4 @@ export default {
 .with_children::before {
   content: '+';
 }
-
 </style>

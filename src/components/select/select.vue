@@ -9,8 +9,8 @@
         v-for="(option, i) of options"
         :key="i"
         @click="
-          open = false;
-          $emit('input', option);
+          open = false
+          $emit('input', option)
         "
       >
         {{ option.name }}
@@ -70,6 +70,7 @@ export default {
   methods: {
     handleClickOption () {
       if (!this.isOptions) return undefined
+
       this.open = !this.open
     }
   }
@@ -77,7 +78,6 @@ export default {
 </script>
 
 <style scoped>
-
 .custom-select {
   position: relative;
   width: 100%;
@@ -104,7 +104,7 @@ export default {
 
 .custom-select .selected:after {
   position: absolute;
-  content: "";
+  content: '';
   top: 18px;
   right: 1em;
   width: 0;

@@ -1,7 +1,6 @@
-
 <script>
-import Row from './row.vue'
 import Cell from './cell.vue'
+import Row from './row.vue'
 
 export default {
   name: 'HeaderRow',
@@ -20,12 +19,12 @@ export default {
   display: flex;
 }
 
-.row>div {
+.row > div {
   flex: 1;
   cursor: pointer;
 }
 
-.row>div:first-child {
+.row > div:first-child {
   border-right: 1px solid var(--border-color);
 }
 
@@ -35,8 +34,8 @@ export default {
 </style>
 
 <template>
-    <div class="row">
-      <Cell :text="tableItem.name" @clickCell="handleRowClick(tableItem.name)" />
-      <Cell :text="tableItem.phone" @clickCell="handleRowClick(tableItem.phone)" />
-    </div>
+  <div class="row">
+    <Cell :text="tableItem.name" @clickCell="handleRowClick(tableItem.name)" />
+    <Cell :text="tableItem.phone" @clickCell="handleRowClick(tableItem.phone)" />
+  </div>
 </template>

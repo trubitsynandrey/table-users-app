@@ -21,6 +21,7 @@ export function mapUserToMaster (arr, masterId, studentToAdd, level = 0) {
 
 function recursiveSort (item, key) {
   if (item.students.length === 0) return
+
   item.students.sort((a, b) => a[key].localeCompare(b[key]))
   item.students.forEach(student => recursiveSort(student, key))
 }
@@ -29,5 +30,6 @@ export function sortDataByKey (data, key) {
   const copyOfData = data.slice()
   copyOfData.forEach(item => recursiveSort(item, key))
   copyOfData.sort((a, b) => a[key].localeCompare(b[key]))
+
   return copyOfData
 }

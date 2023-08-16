@@ -24,11 +24,11 @@ export default {
   display: flex;
 }
 
-.row>div {
+.row > div {
   flex: 1;
 }
 
-.row>div:first-child {
+.row > div:first-child {
   border-right: 1px solid var(--border-color);
 }
 
@@ -43,15 +43,19 @@ export default {
 .show {
   display: block;
 }
-
 </style>
 
 <template>
   <div>
-    <div class="row" @click="(showChildren = !showChildren)">
+    <div class="row" @click="showChildren = !showChildren">
       <Cell :text="tableItem.name" :withChildren="withChildren" :level="tableItem.level" />
       <Cell :text="tableItem.phone" />
     </div>
-    <Row :class="{not_show: !showChildren, show: showChildren }" v-for="student of tableItem.students" :key="student.id" :tableItem="student" />
+    <Row
+      :class="{ not_show: !showChildren, show: showChildren }"
+      v-for="student of tableItem.students"
+      :key="student.id"
+      :tableItem="student"
+    />
   </div>
 </template>

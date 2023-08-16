@@ -1,12 +1,12 @@
 <script>
-import Cell from './table/ui/cell.vue'
 import Button from '../components/button/button.vue'
-import Modal from '../components/modal/modal.vue'
 import Input from '../components/input/input.vue'
+import Modal from '../components/modal/modal.vue'
 import Select from '../components/select/select.vue'
-import Row from './table/ui/row.vue'
+import Cell from './table/ui/cell.vue'
 import HeaderRow from './table/ui/header-row.vue'
-import {mapUserToMaster, sortDataByKey} from './table/utils/index.js'
+import Row from './table/ui/row.vue'
+import { mapUserToMaster, sortDataByKey } from './table/utils/index.js'
 
 export default {
   name: 'Table',
@@ -32,13 +32,22 @@ export default {
       if (this.phone === '') {
         this.errorPhone = true
       }
+
       if (this.name === '') {
         this.errorName = true
       }
+
       if (this.name === '' || this.phone === '') {
         return
       }
-      const tableItem = { id: new Date().getTime().toString(), name: this.name, phone: this.phone, students: [] }
+
+      const tableItem = {
+        id: new Date().getTime().toString(),
+        name: this.name,
+        phone: this.phone,
+        students: []
+      }
+
       if (this.option) {
         this.tableItems = mapUserToMaster(this.tableItems, this.option.id, tableItem)
       } else {
@@ -57,6 +66,7 @@ export default {
     },
     sortUsersByKey (key) {
       if (this.tableItems.length === 0) return
+
       this.tableItems = sortDataByKey(this.tableItems, key)
       localStorage.setItem('users', JSON.stringify(this.tableItems))
     }
@@ -96,9 +106,19 @@ export default {
       <form @submit.prevent="submitHandle">
         <div class="modal_content">
           <p>Fill the form to add user</p>
-          <Input :value="name" @input="updateNameValue" name="Name" :errorMsg="errorName ? 'Enter the name' : ''" />
-          <Input :value="phone" @input="updatePhoneValue" name="Phone" :errorMsg="errorPhone ? 'Enter the phone' : ''"
-            type="number" />
+          <Input
+            :value="name"
+            @input="updateNameValue"
+            name="Name"
+            :errorMsg="errorName ? 'Enter the name' : ''"
+          />
+          <Input
+            :value="phone"
+            @input="updatePhoneValue"
+            name="Phone"
+            :errorMsg="errorPhone ? 'Enter the phone' : ''"
+            type="number"
+          />
           <Select :options="options" @input="handleSelectInput" :value="option" />
           <Button>Submit</Button>
         </div>
@@ -129,7 +149,7 @@ export default {
   width: 100%;
 }
 
-.table>div:last-child {
+.table > div:last-child {
   border-bottom: 1px solid;
   border-color: var(--border-color);
 }
