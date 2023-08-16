@@ -1,9 +1,10 @@
 <template>
-  <div class="custom-select" :tabindex="tabindex" @blur="open = false">
+  <div class="select" :tabindex="tabindex" @blur="open = false">
     <div v-if="!isOptions" class="selected placeholder">{{ placeholder }}</div>
     <div v-else class="selected" :class="{ open: open }" @click="handleClickOption">
       {{ value ? value.name : 'Choose mentor' }}
     </div>
+
     <div class="items" :class="{ selectHide: !open }">
       <div
         v-for="(option, i) of options"
@@ -40,7 +41,7 @@ export default {
       type: Object
     }
   },
-  data () {
+  data() {
     return {
       open: false,
       placeholder: 'There is nothing to choose from',
@@ -48,16 +49,16 @@ export default {
     }
   },
   computed: {
-    noOptions () {
+    noOptions() {
       return this.options.length === 0
     }
   },
-  mounted () {
+  mounted() {
     this.$emit('input', this.value)
   },
   watch: {
     options: {
-      handler (newOptions) {
+      handler(newOptions) {
         if (newOptions.length === 0) {
           this.isOptions = false
         } else {
@@ -68,7 +69,7 @@ export default {
     }
   },
   methods: {
-    handleClickOption () {
+    handleClickOption() {
       if (!this.isOptions) return undefined
 
       this.open = !this.open
@@ -78,7 +79,7 @@ export default {
 </script>
 
 <style scoped>
-.custom-select {
+.select {
   position: relative;
   width: 100%;
   text-align: left;
@@ -87,7 +88,7 @@ export default {
   line-height: 38px;
 }
 
-.custom-select .selected {
+.select .selected {
   background-color: white;
   border-radius: 6px;
   border: 1px solid #666666;
@@ -97,12 +98,12 @@ export default {
   user-select: none;
 }
 
-.custom-select .selected.open {
+.select .selected.open {
   border: 1px solid var(--accent-color);
   border-radius: 6px 6px 0px 0px;
 }
 
-.custom-select .selected:after {
+.select .selected:after {
   position: absolute;
   content: '';
   top: 18px;
@@ -113,7 +114,7 @@ export default {
   border-color: black transparent transparent transparent;
 }
 
-.custom-select .items {
+.select .items {
   color: black;
   border-radius: 0px 0px 6px 6px;
   overflow: hidden;
@@ -129,22 +130,23 @@ export default {
   overflow-y: scroll;
 }
 
-.custom-select .items::-webkit-scrollbar {
+.select .items::-webkit-scrollbar {
   width: 8px;
 }
-.custom-select .items::-webkit-scrollbar-thumb {
+
+.select .items::-webkit-scrollbar-thumb {
   background-color: var(--form-color);
   border-radius: 6px;
 }
 
-.custom-select .items div {
+.select .items div {
   color: black;
   padding-left: 1em;
   cursor: pointer;
   user-select: none;
 }
 
-.custom-select .items div:hover {
+.select .items div:hover {
   background-color: var(--accent-color);
 }
 

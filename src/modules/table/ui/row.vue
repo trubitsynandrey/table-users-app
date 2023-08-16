@@ -6,13 +6,13 @@ export default {
   name: 'Row',
   props: ['tableItem', 'isHeader'],
   components: { Cell, Row },
-  data () {
+  data() {
     return {
       showChildren: false
     }
   },
   computed: {
-    withChildren () {
+    withChildren() {
       return this.tableItem.students && this.tableItem.students.length > 0
     }
   }
@@ -51,6 +51,7 @@ export default {
       <Cell :text="tableItem.name" :withChildren="withChildren" :level="tableItem.level" />
       <Cell :text="tableItem.phone" />
     </div>
+
     <Row
       :class="{ not_show: !showChildren, show: showChildren }"
       v-for="student of tableItem.students"

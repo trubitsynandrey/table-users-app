@@ -7,7 +7,7 @@ export default {
   props: ['tableItem'],
   components: { Cell, Row },
   methods: {
-    handleRowClick (key) {
+    handleRowClick(key) {
       this.$emit('sort', key)
     }
   }

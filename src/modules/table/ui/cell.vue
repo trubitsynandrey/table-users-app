@@ -7,7 +7,7 @@
 <script>
 export default {
   name: 'Cell',
-  props: ['text', 'level', 'withChildren'],
+  props: ['text', 'level', 'withChildren']
 }
 </script>
 

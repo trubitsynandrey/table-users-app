@@ -11,24 +11,24 @@ import { mapUserToMaster, sortDataByKey } from './table/utils/index.js'
 export default {
   name: 'Table',
   methods: {
-    openModal () {
+    openModal() {
       this.$refs.modalRef.openPopup()
     },
-    closeModal () {
+    closeModal() {
       this.$refs.modalRef.closePopup()
     },
-    updateNameValue (newValue) {
+    updateNameValue(newValue) {
       this.errorName = false
       this.name = newValue
     },
-    updatePhoneValue (newValue) {
+    updatePhoneValue(newValue) {
       this.errorPhone = false
       this.phone = newValue
     },
-    handleSelectInput (newValue) {
+    handleSelectInput(newValue) {
       this.option = newValue
     },
-    submitHandle () {
+    submitHandle() {
       if (this.phone === '') {
         this.errorPhone = true
       }
@@ -64,14 +64,14 @@ export default {
       this.closeModal()
       this.option = undefined
     },
-    sortUsersByKey (key) {
+    sortUsersByKey(key) {
       if (this.tableItems.length === 0) return
 
       this.tableItems = sortDataByKey(this.tableItems, key)
       localStorage.setItem('users', JSON.stringify(this.tableItems))
     }
   },
-  data () {
+  data() {
     return {
       name: '',
       phone: '',
@@ -82,7 +82,7 @@ export default {
       errorPhone: false
     }
   },
-  mounted () {
+  mounted() {
     const savedUsers = localStorage.getItem('users')
     const options = localStorage.getItem('options')
 
@@ -98,10 +98,12 @@ export default {
 <template>
   <div class="container">
     <Button @emitClick="openModal" class="button_add">Add</Button>
+
     <div class="table">
       <HeaderRow :tableItem="{ name: 'name', phone: 'phone' }" @sort="sortUsersByKey" />
       <Row v-for="item in tableItems" :key="item.id" :tableItem="item" />
     </div>
+
     <Modal ref="modalRef">
       <form @submit.prevent="submitHandle">
         <div class="modal_content">

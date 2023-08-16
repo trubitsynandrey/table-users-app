@@ -25,6 +25,7 @@ module.exports = {
   rules: {
     // allow async-await
     'generator-star-spacing': 'off',
+    'space-before-function-paren': 'off',
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-console': 2,
@@ -50,7 +51,6 @@ module.exports = {
         printWidth: 100,
         semi: false,
         singleQuote: true,
-        trailingComma: 'all',
         bracketSpacing: true,
         endOfLine: 'auto',
       },

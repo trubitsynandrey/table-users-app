@@ -13,20 +13,20 @@
 <script>
 export default {
   name: 'Modal',
-  data () {
+  data() {
     return {
       isOpen: false
     }
   },
   methods: {
-    openPopup () {
+    openPopup() {
       this.isOpen = true
     },
-    closePopup () {
+    closePopup() {
       this.isOpen = false
       this.$emit('close')
     },
-    handleIsOpenChange (newIsOpen) {
+    handleIsOpenChange(newIsOpen) {
       if (newIsOpen) {
         document.body.style.overflow = 'hidden'
       } else {
