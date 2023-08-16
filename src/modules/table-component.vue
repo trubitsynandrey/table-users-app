@@ -1,42 +1,42 @@
 <template>
   <div class="container">
-    <Button @emitClick="openModal" class="button_add">Add</Button>
+    <app-button @emitClick="openModal" class="button_add">Add</app-button>
 
     <div class="table">
       <header-row :tableItem="{ name: 'name', phone: 'phone' }" @sort="sortUsersByKey" />
       <Row v-for="item in tableItems" :key="item.id" :tableItem="item" />
     </div>
 
-    <modal ref="modalRef">
+    <app-modal ref="modalRef">
       <form @submit.prevent="submitHandle">
         <div class="modal_content">
           <p>Fill the form to add user</p>
-          <Input
+          <app-input
             :value="name"
             @input="updateNameValue"
             name="Name"
             :errorMsg="errorName ? 'Enter the name' : ''"
           />
-          <Input
+          <app-input
             :value="phone"
             @input="updatePhoneValue"
             name="Phone"
             :errorMsg="errorPhone ? 'Enter the phone' : ''"
             type="number"
           />
-          <Select :options="options" @input="handleSelectInput" :value="option" />
-          <Button>Submit</Button>
+          <app-select :options="options" @input="handleSelectInput" :value="option" />
+          <app-button>Submit</app-button>
         </div>
       </form>
-    </modal>
+    </app-modal>
   </div>
 </template>
 
 <script>
-import Button from '../components/button/button.vue'
-import Input from '../components/input/input.vue'
-import Modal from '../components/modal/modal.vue'
-import Select from '../components/select/select.vue'
+// import Button from '../components/button/button.vue'
+// import Input from '../components/input/input.vue'
+// import Modal from '../components/modal/modal.vue'
+// import Select from '../components/select/select.vue'
 import Cell from './table/ui/cell.vue'
 import HeaderRow from './table/ui/header-row.vue'
 import Row from './table/ui/row.vue'
@@ -125,7 +125,7 @@ export default {
       this.options = JSON.parse(options)
     }
   },
-  components: { Cell, Button, Modal, Input, Select, Row, HeaderRow }
+  components: { Cell, Row, HeaderRow }
 }
 </script>
 

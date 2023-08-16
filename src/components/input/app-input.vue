@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: 'Input',
+  name: 'AppInput',
   props: {
     value: String,
     placeholder: String,

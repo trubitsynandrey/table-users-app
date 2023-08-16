@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="row" @click="showChildren = !showChildren">
-      <Cell :text="tableItem.name" :withChildren="withChildren" :level="tableItem.level" />
-      <Cell :text="tableItem.phone" />
+      <cell :text="tableItem.name" :withChildren="withChildren" :level="tableItem.level" />
+      <cell :text="tableItem.phone" />
     </div>
 
     <row

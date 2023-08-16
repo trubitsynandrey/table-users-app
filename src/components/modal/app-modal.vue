@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: 'Modal',
+  name: 'AppModal',
   data() {
     return {
       isOpen: false
