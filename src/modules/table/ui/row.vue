@@ -43,17 +43,13 @@ export default {
 .show {
   display: block;
 }
-.with_children::before {
-  content: '+';
-  position: absolute;
-}
 
 </style>
 
 <template>
   <div>
     <div class="row" @click="(showChildren = !showChildren)">
-      <Cell :text="tableItem.name" :class="{with_children: withChildren}" :level="tableItem.level" />
+      <Cell :text="tableItem.name" :withChildren="withChildren" :level="tableItem.level" />
       <Cell :text="tableItem.phone" />
     </div>
     <Row :class="{not_show: !showChildren, show: showChildren }" v-for="student of tableItem.students" :key="student.id" :tableItem="student" />
