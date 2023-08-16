@@ -49,7 +49,6 @@ export default {
   },
   computed: {
     noOptions () {
-      console.log(this.options.length === 0, 'no Options')
       return this.options.length === 0
     }
   },
@@ -126,6 +125,16 @@ export default {
   left: 0;
   right: 0;
   z-index: 1;
+  max-height: 200px;
+  overflow-y: scroll;
+}
+
+.custom-select .items::-webkit-scrollbar {
+  width: 8px;
+}
+.custom-select .items::-webkit-scrollbar-thumb {
+  background-color: var(--form-color);
+  border-radius: 6px;
 }
 
 .custom-select .items div {

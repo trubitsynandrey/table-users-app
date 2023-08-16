@@ -24,6 +24,7 @@ body {
   --accent-color: #8CC0DE;
   --secondary-color: #F1F0E8;
   --border-color: #F1F0E8;
+  --form-color: #d8d9da;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

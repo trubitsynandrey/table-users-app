@@ -26,11 +26,9 @@ export default {
       this.phone = newValue
     },
     handleSelectInput (newValue) {
-      console.log(newValue, 'option')
       this.option = newValue
     },
     submitHandle () {
-      console.log(this.phone === '', 'phone')
       if (this.phone === '') {
         this.errorPhone = true
       }
@@ -58,7 +56,6 @@ export default {
       this.option = undefined
     },
     sortUsersByKey (key) {
-      console.log('sorting')
       if (this.tableItems.length === 0) return
       this.tableItems = sortDataByKey(this.tableItems, key)
       localStorage.setItem('users', JSON.stringify(this.tableItems))
@@ -82,11 +79,6 @@ export default {
     if (savedUsers && options) {
       this.tableItems = JSON.parse(savedUsers)
       this.options = JSON.parse(options)
-    }
-  },
-  watch: {
-    tableItems: (newVal) => {
-      console.log(JSON.stringify(newVal))
     }
   },
   components: { Cell, Button, Modal, Input, Select, Row, HeaderRow }
