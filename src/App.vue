@@ -30,7 +30,6 @@ body {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: var(--accent-color);
   background-color: #9e9fa5;
   height: 100vh;
